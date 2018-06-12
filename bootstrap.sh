@@ -1,5 +1,9 @@
 #!/bin/bash
 
+
+sudo add-apt-repository ppa:jonathonf/vim
+apt update
+apt install vim
 cp vimrc /dev/.vimrc
 
 curl https://sh.rustup.rs -sSf | sh
