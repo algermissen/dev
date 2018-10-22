@@ -26,9 +26,9 @@ sudo apt-get install ufw
 
 
 sudo add-apt-repository ppa:jonathonf/vim
-apt update
-apt install vim
-cp vimrc /dev/.vimrc
+sudo apt update
+sudo apt install vim
+sudo cp vimrc ~/.vimrc
 
 curl https://sh.rustup.rs -sSf | sh
 
@@ -41,10 +41,11 @@ rustup update
 
 rustup toolchain install nightly
 
-wget https://linux.dropbox.com/packages/ubuntu/dropbox_2015.10.28_amd64.deb
-sudo apt-get install ./dropbox_2015.10.28_amd64.deb
+#wget https://linux.dropbox.com/packages/ubuntu/dropbox_2015.10.28_amd64.deb
+#sudo apt-get install ./dropbox_2015.10.28_amd64.deb
 
 sudo apt-get install mosh
+sudo apt-get install gcc
 
 sudo ufw allow proto udp to any port 60001:60010
 
