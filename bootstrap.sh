@@ -49,6 +49,13 @@ sudo apt-get install gcc
 
 sudo ufw allow proto udp to any port 60001:60010
 
+l2ban
+https://www.digitalocean.com/community/tutorials/how-to-protect-ssh-with-fail2ban-on-ubuntu-14-04
+
+
+
+```:w
+
 
 
 
