@@ -50,6 +50,7 @@ git config --global user.name "Jan Algermissen"
 
 # TMUX
 cp tmux.conf ~/.tmux.conf
+cp dev-temux ~/dev-tmux
 
 
 
