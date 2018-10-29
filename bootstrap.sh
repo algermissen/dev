@@ -20,6 +20,7 @@ apt-get install -y mosh
 apt-get install -y gcc
 apt-get install -y fail2ban
 
+#https://www.digitalocean.com/community/tutorials/how-to-protect-ssh-with-fail2ban-on-ubuntu-14-04
 cp jail.local /etc/fail2ban/
 service jail2ban restart
 
@@ -38,14 +39,17 @@ rustup component add rust-docs
 rustup update
 rustup toolchain install nightly
 
+
+git config --global user.email "algermissen@acm.org"
+git config --global user.name "Jan Algermissen"
+
+# For dropbox
+#sudo apt-get install python-gpgme
 #wget https://linux.dropbox.com/packages/ubuntu/dropbox_2015.10.28_amd64.deb
 #apt-get install ./dropbox_2015.10.28_amd64.deb
 
-
-#https://www.digitalocean.com/community/tutorials/how-to-protect-ssh-with-fail2ban-on-ubuntu-14-04
-
-
-
+# TMUX
+cp tmux.conf ~/.tmux.conf
 
 
 
