@@ -39,6 +39,14 @@ rustup component add rust-docs
 rustup update
 rustup toolchain install nightly
 
+rustup component add rust-src
+rustup component add rust-docs
+
+cargo +nightly install racer
+
+rustup component add rust-src
+export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+
 
 git config --global user.email "algermissen@acm.org"
 git config --global user.name "Jan Algermissen"

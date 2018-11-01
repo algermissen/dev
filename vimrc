@@ -200,7 +200,7 @@ set tabstop=4
 set expandtab
 set ruler
 set ffs=unix,dos,mac
-set colorcolumn=80
+"set colorcolumn=80
 set number
 set numberwidth=3
 set shiftwidth=4
@@ -263,17 +263,24 @@ noremap <leader>0 :tablast<cr>
 
 " Setting up shortcuts for commands in asyncomplete
 " https://github.com/prabirshrestha/vim-lsp#supported-commands
-map <leader>d :LspDefinition<cr>
-map <leader>h :LspHover<cr>
-map <leader>u :LspReferences<cr>
-map <leader>f :LspDocumentFormat<cr>
+" map <leader>d :LspDefinition<cr>
+" map <leader>h :LspHover<cr>
+" map <leader>u :LspReferences<cr>
+" map <leader>f :LspDocumentFormat<cr>
+"
+set hidden
+let g:racer_cmd = "/home/dev/.cargo/bin/racer"
+
+au FileType rust nmap gd <Plug>(rust-def)
+au FileType rust nmap gs <Plug>(rust-def-split)
+au FileType rust nmap gx <Plug>(rust-def-vertical)
+au FileType rust nmap <leader>gd <Plug>(rust-doc)
 
 
 " Configure for ctags navigation (rusty-tags)
 " https://github.com/dan-t/rusty-tags
-
-autocmd BufRead *.rs :setlocal tags=./rusty-tags.vi;/,$RUST_SRC_PATH/rusty-tags.vi
-autocmd BufWrite *.rs :silent! exec "!rusty-tags vi --quiet --start-dir=" . expand('%:p:h') . "&" <bar> redraw!
+" autocmd BufRead *.rs :setlocal tags=./rusty-tags.vi;/,$RUST_SRC_PATH/rusty-tags.vi
+" autocmd BufWrite *.rs :silent! exec "!rusty-tags vi --quiet --start-dir=" . expand('%:p:h') . "&" <bar> redraw!
 
 " WE CAN NOW
 " - navigate to definition with CTRL+]
@@ -282,9 +289,9 @@ autocmd BufWrite *.rs :silent! exec "!rusty-tags vi --quiet --start-dir=" . expa
 
 " Configure asynccomplete
 " https://github.com/prabirshrestha/asyncomplete.vim
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
+" inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
 
 " WE CAN NOW
 " - navigate suggestions with tabs and select with return
@@ -319,11 +326,12 @@ let g:rustfmt_autosave = 1
 call plug#begin()
 Plug 'scrooloose/nerdtree'
 Plug 'rust-lang/rust.vim'
-Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/vim-lsp'
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
-Plug 'keremc/asyncomplete-racer.vim'
+Plug 'racer-rust/vim-racer'
+" Plug 'prabirshrestha/async.vim'
+" Plug 'prabirshrestha/vim-lsp'
+" Plug 'prabirshrestha/asyncomplete.vim'
+" Plug 'prabirshrestha/asyncomplete-lsp.vim'
+" Plug 'keremc/asyncomplete-racer.vim'
 call plug#end()
 
 if executable('rls')
