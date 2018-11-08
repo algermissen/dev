@@ -43,9 +43,10 @@ rustup component add rust-src
 rustup component add rust-docs
 
 cargo +nightly install racer
+cargo install rustfmt
 
 rustup component add rust-src
-export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+echo 'export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"' >> ~/.profile
 
 
 git config --global user.email "algermissen@acm.org"
@@ -60,5 +61,19 @@ git config --global user.name "Jan Algermissen"
 cp tmux.conf ~/.tmux.conf
 cp dev-temux ~/dev-tmux
 
+apt-get install golang
 
+
+
+wget https://storage.googleapis.com/golang/go1.11.2.linux-amd64.tar.gz
+sudo tar -zxvf go1.11.2.linux-amd64.tar.gz -C /usr/local/
+
+echo 'export PATH="$HOME/.cargo/bin:$PATH"' >> ~/.profile
+
+echo 'export GIT_EDITOR=vi' >> ~/.profile
+
+echo 'export GOROOT=/usr/local/go' >> ~/.profile
+echo 'export GOPATH=/home/dev/go' >> ~/.profile
+echo 'export PATH=$PATH:$GOPATH/bin:$GOROOT/bin' >> ~/.profile
+    
 

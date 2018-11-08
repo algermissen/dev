@@ -191,6 +191,18 @@ set makeprg=bundle\ exec\ rspec\ -f\ QuickfixFormatter
 " My personal settings
 " ============================================================================
 
+call plug#begin()
+Plug 'scrooloose/nerdtree'
+Plug 'rust-lang/rust.vim'
+Plug 'racer-rust/vim-racer'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'prabirshrestha/asyncomplete-gocode.vim'
+" Plug 'keremc/asyncomplete-racer.vim'
+call plug#end()
 
 " MISCELLANEOUS SETTINGS
 " -------------------------------------------------------------------
@@ -289,9 +301,22 @@ au FileType rust nmap <leader>gd <Plug>(rust-doc)
 
 " Configure asynccomplete
 " https://github.com/prabirshrestha/asyncomplete.vim
-" inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-" inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
+
+imap <c-space> <Plug>(asyncomplete_force_refresh)
+
+" let g:asyncomplete_auto_popup = 0 
+
+call asyncomplete#register_source(asyncomplete#sources#gocode#get_source_options({
+    \ 'name': 'gocode',
+    \ 'whitelist': ['go'],
+    \ 'completor': function('asyncomplete#sources#gocode#completor'),
+    \ 'config': {
+    \    'gocode_path': expand('~/go/bin/gocode')
+    \  },
+    \ }))
 
 " WE CAN NOW
 " - navigate suggestions with tabs and select with return
@@ -323,16 +348,10 @@ let g:rustfmt_autosave = 1
 " SETTING UP PLUGINS
 " -------------------------------------------------------------------
 
-call plug#begin()
-Plug 'scrooloose/nerdtree'
-Plug 'rust-lang/rust.vim'
-Plug 'racer-rust/vim-racer'
-" Plug 'prabirshrestha/async.vim'
-" Plug 'prabirshrestha/vim-lsp'
-" Plug 'prabirshrestha/asyncomplete.vim'
-" Plug 'prabirshrestha/asyncomplete-lsp.vim'
-" Plug 'keremc/asyncomplete-racer.vim'
-call plug#end()
+let g:go_fmt_command = "goimports"
+set autowrite
+let g:go_auto_sameids = 1
+
 
 if executable('rls')
     au User lsp_setup call lsp#register_server({
@@ -343,5 +362,5 @@ if executable('rls')
 endif
 
 " Added as said in https://github.com/keremc/asyncomplete-racer.vim#installation
-autocmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#racer#get_source_options())
+" autocmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#racer#get_source_options())
 
