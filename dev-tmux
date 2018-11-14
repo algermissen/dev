@@ -4,9 +4,9 @@ tmux new-session -s dev -n edit -d
 tmux new-window -t dev:2 -n compile
 tmux new-window -t dev:3 -n run
 
-tmux send-keys -t dev:1 "cd aply-profile; vim" C-m
-tmux send-keys -t dev:2 "cd aply-profile; ls -al" C-m
-tmux send-keys -t dev:3 "cd aply-profile; git status"  C-m
+#tmux send-keys -t dev:1 "cd aply-profile; vim" C-m
+#tmux send-keys -t dev:2 "cd aply-profile; ls -al" C-m
+#tmux send-keys -t dev:3 "cd aply-profile; git status"  C-m
 
 tmux select-window  -t dev:1
 tmux -2 attach-session -d -t dev
